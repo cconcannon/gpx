@@ -22,3 +22,15 @@ func CreateGpx(m Metadata) Gpx {
 	g.Version = "1.1"
 	return g
 }
+
+func (g Gpx) GetTracks() []Trk {
+	return (*g.Tracks)
+}
+
+func (t Trk) GetSegments() []Trkseg {
+	return (*t.TrackSegments)
+}
+
+func (t Trkseg) GetTrackPoints() []Wpt {
+	return (*t.TrackPoints)
+}
