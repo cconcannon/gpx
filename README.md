@@ -36,35 +36,16 @@ err = gpx.Unmarshal(data, &g)
 if err != nil {
 	fmt.Println(err)
 }
-
-// access your data via g.Tracks...
 ```
 
-## Get Points from a Track
+### Get Points from a Track
 
 ```go
-tracks := g.Tracks
-segments := (*tracks)[0].TrackSegments
-trackPoints := (*segments)[0].TrackPoints
+tracks := g.GetTracks()
+segments := tracks[0].GetSegments()
+points := segments[0].GetTrackPoints()
 
-for i, point := range *trackPoints {
+for _, point := range points {
 	fmt.Printf("\nPoint %v:\nLatitude: %v\nLongitude: %v\n", i, point.Lat, point.Lon)
 }
-```
-
-### Create a GPX file:
-
-```go
-m := gpx.Metadata{
-	Name: "data identifier"
-	Author: "your name"
-	...
-}
-
-// Create empty GPX data structure with metadata
-g := gpx.CreateGpx(m)
-
-// Add track data
-g.Tracks = ...
-
 ```
